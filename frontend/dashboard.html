@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html> 
+<head><title>Smart Vertical Farm</title> 
+<style>body{font-family:Arial;margin:20px;background:#0a1a0f;color:#fff;}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}.card{background:#1a3a2a;padding:20px;border-radius:10px;text-align:center;}.value{font-size:48px;color:#4CAF50;}button{padding:15px 30px;margin:10px;border:none;border-radius:5px;cursor:pointer;}.on{background:#4CAF50;color:#fff;}.off{background:#f44336;color:#fff;}</style> 
+</head> 
+<body> 
+<h1>Smart Vertical Farming Dashboard</h1> 
+<div class="grid"> 
+<div class="card"><div>Temperature</div><div class="value" id="temp">--C</div></div> 
+<div class="card"><div>Humidity</div><div class="value" id="hum">--%%</div></div> 
+<div class="card"><div>Soil Moisture</div><div class="value" id="soil">--%%</div></div> 
+<div class="card"><div>Light Level</div><div class="value" id="light">--%%</div></div> 
+</div> 
+<div> 
+<button class="on" onclick="control('pump','on')">Pump ON</button> 
+<button class="off" onclick="control('pump','off')">Pump OFF</button> 
+<button class="on" onclick="control('led','on')">LED ON</button> 
+<button class="off" onclick="control('led','off')">LED OFF</button> 
+</div> 
+<script> 
+async function fetchStatus(){const r=await fetch('/api/status');const d=await r.json();document.getElementById('temp').textContent=d.temperature+'C';document.getElementById('hum').textContent=d.humidity+'%%';document.getElementById('soil').textContent=d.soil+'%%';document.getElementById('light').textContent=d.light+'%%';} 
+async function control(d,a){await fetch('/api/control/'+d+'/'+a);} 
+setInterval(fetchStatus,3000);fetchStatus(); 
+</script> 
+</body></html> 

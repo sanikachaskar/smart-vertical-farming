@@ -1,0 +1,2 @@
+DHT sensor library by Adafruit (v1.4.4+) 
+Adafruit Unified Sensor (v1.1.9+) 
