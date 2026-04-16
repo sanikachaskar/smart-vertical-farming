@@ -1,0 +1,12 @@
+# Python 
+__pycache__/ 
+*.pyc 
+venv/ 
+ 
+# Arduino 
+*.ino.hex 
+build/ 
+ 
+# OS Files 
+.DS_Store 
+Thumbs.db 
